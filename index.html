@@ -35,12 +35,12 @@ d3.json("us.json", function(error, us) {
 
   svg.append("path")
       .datum(topojson.mesh(us))
-    .attr("class", "border border--state")
+    .attr("class", "border border--mesh")
       .attr("d", path);
 
   svg.append("path")
       .datum(topojson.mesh(us, us.objects.states))
-      .attr("class", "border border--state")
+      .attr("class", "border border--mesh")
       .attr("d", path);
 
 svg.append("path")
