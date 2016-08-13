@@ -13,6 +13,12 @@
   stroke-linecap: round;
 }
 
+.bubble {
+  fill-opacity: .5;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
 </style>
 <body>
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -42,13 +48,19 @@ svg.append("path")
     .attr("class", "border border--state")
     .attr("d", path);
 
+var radius = d3.scale.sqrt()
+    .domain([0, 1e6])
+    .range([0, 15]);
+
 svg.append("g")
     .attr("class", "bubble")
   .selectAll("circle")
-    .data(topojson.feature(us, us.objects.counties).features)
+    .data(topojson.feature(us, us.objects.counties).features
+      .sort(function(a, b) { return b.properties.population - a.properties.population; }))
   .enter().append("circle")
     .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-    .attr("r", 1.5);
+    .attr("r", function(d) { return radius(d.properties.population); });
+
 });
 
 </script>
