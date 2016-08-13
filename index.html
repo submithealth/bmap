@@ -87,7 +87,7 @@ svg.append("g")
       .sort(function(a, b) { return b.properties.population - a.properties.population; }))
   .enter().append("circle")
     .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-    .attr("r", function(d) { return radius(d.properties.population); });
+    .attr("r", function(d) { return radius(d.properties.population); })
     .append("title")
       .text(function(d) {
         return d.properties.name
