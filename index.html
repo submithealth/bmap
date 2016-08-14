@@ -41,9 +41,9 @@ tooltip.tooltip {
   text-align: center;	
   width: inherit;	
   height: 28px;		
-  padding: 2px;	
+  padding: 6px;	
   font: 12px sans-serif;	
-  background: lightsteelblue;	
+  background: ghostwhite;	
   border: 0px;					
   border-radius: 8px;
 
@@ -120,7 +120,7 @@ svg.append("g")
 				.style("opacity", 0);
 			tooltip.transition()
 				.duration(200)	
-				.style("opacity", .7);	
+				.style("opacity", .8);	
 			tooltip	.html(
 	            d.properties.name
     	        + "<br>Population " + formatNumber(d.properties.population))
