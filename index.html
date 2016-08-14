@@ -39,7 +39,7 @@
 tooltip.tooltip {
   position: absolute;	
   text-align: center;	
-  width: 60px;	
+  width: inherit;	
   height: 28px;		
   padding: 2px;	
   font: 12px sans-serif;	
@@ -120,10 +120,10 @@ svg.append("g")
 				.style("opacity", 0);
 			tooltip.transition()
 				.duration(200)	
-				.style("opacity", .9);	
+				.style("opacity", .7);	
 			tooltip	.html(
 	            d.properties.name
-    	        + "\nPopulation " + formatNumber(d.properties.population))
+    	        + "<br>Population " + formatNumber(d.properties.population))
 				.style("left", (d3.event.pageX) + "px")			 
 				.style("top", (d3.event.pageY - 28) + "px");
       });
