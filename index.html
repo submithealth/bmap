@@ -71,6 +71,12 @@ var radius = d3.scale.sqrt()
     .domain([0, 1e6])
     .range([0, 15]);
 
+// Define 'div' for tooltips
+var tooltip = d3.select("body")
+	.append("div")  // declare the tooltip div 
+	.attr("class", "tooltip")              // apply the 'tooltip' class
+	.style("opacity", 0);                  // set the opacity to nil
+
 var legend = svg.append("g")
     .attr("class", "legend")
     .attr("transform", "translate(" + (width - 50) + "," + (height - 20) + ")")
@@ -108,12 +114,18 @@ svg.append("g")
   .enter().append("circle")
     .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
     .attr("r", function(d) { return radius(d.properties.population); })
-    .append("div")
-	.attr("class", "tooltip")              // apply the 'tooltip' class
-	.style("opacity", 0)
-      .text(function(d) {
-        return d.properties.name
-            + "\nPopulation " + formatNumber(d.properties.population);
+	    .on("mouseover", function(d) {		
+            div.transition()
+				.duration(500)	
+				.style("opacity", 0);
+			div.transition()
+				.duration(200)	
+				.style("opacity", .9);	
+			div	.html(
+	            d.properties.name
+    	        + "\nPopulation " + formatNumber(d.properties.population))
+				.style("left", (d3.event.pageX) + "px")			 
+				.style("top", (d3.event.pageY - 28) + "px");
       });
 
 });
